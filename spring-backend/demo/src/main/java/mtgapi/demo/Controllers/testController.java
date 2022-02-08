@@ -15,7 +15,7 @@ public class testController {
     @Autowired
     private testService service;
 
-    //    http://127.0.0.1:8080/test_entity/test
+    //    http://127.0.0.1:8090/test_entity/test
     @GetMapping(value = "/test")
     public String test() {
         return "hello, world!";
