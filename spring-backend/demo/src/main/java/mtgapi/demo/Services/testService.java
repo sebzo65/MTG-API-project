@@ -3,6 +3,7 @@ package mtgapi.demo.Services;
 //import com.fasterxml.jackson.core.JsonProcessingException;
 import mtgapi.demo.Entities.testEntity;
 import mtgapi.demo.Payloads.Requests.testCreatePayload;
+import mtgapi.demo.Payloads.Requests.testUpdatePayload;
 import mtgapi.demo.Repositories.testRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,15 @@ public class testService {
         testEntity newTestEntity = new testEntity(test.getName(), test.getPower());
 
         repository.save(newTestEntity);
+    }
+
+    public testEntity update (Long id, testUpdatePayload data) {
+        if (this.repository.existsByNameAndId(data.getName(), id)) {
+            throw new Error(String.format("testEntity with name %s already exists",
+                    data.getName()));
+        }
+        var test = this.findById(id);
+
+        return this.repository.save(test);
     }
 }

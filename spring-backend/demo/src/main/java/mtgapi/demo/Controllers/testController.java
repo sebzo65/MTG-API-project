@@ -2,8 +2,11 @@ package mtgapi.demo.Controllers;
 
 import mtgapi.demo.Entities.testEntity;
 import mtgapi.demo.Payloads.Requests.testCreatePayload;
+import mtgapi.demo.Payloads.Requests.testUpdatePayload;
+import mtgapi.demo.Repositories.testRepository;
 import mtgapi.demo.Services.testService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,6 +17,8 @@ import java.util.List;
 public class testController {
     @Autowired
     private testService service;
+    @Autowired
+    private testRepository repository;
 
     //    http://127.0.0.1:8090/test_entity/test
     @GetMapping(value = "/test")
@@ -31,7 +36,7 @@ public class testController {
         return String.format("Hello %s, you are %d years old", name, age);
     }
 
-    @GetMapping(value = "/*")
+    @GetMapping
     public List<testEntity> all() {
         return this.service.all();
     }
@@ -47,5 +52,14 @@ public class testController {
     public void save(@Valid @RequestBody testCreatePayload test) {
         this.service.create(test);
     }
+
+    //Updating test data
+//    public ResponseEntity<testEntity> update(long id, testEntity testDetails) {
+//        testEntity updateTest = this.repository.findById(id);
+//        updateTest.setName(testDetails.getName());
+//        updateTest.setPower(testDetails.getPower());
+//
+//        this.repository.save(updateTest);
+//    }
 
 }
