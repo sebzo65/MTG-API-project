@@ -6,6 +6,7 @@ import mtgapi.demo.Payloads.Requests.testUpdatePayload;
 import mtgapi.demo.Repositories.testRepository;
 import mtgapi.demo.Services.testService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,6 @@ import java.util.List;
 public class testController {
     @Autowired
     private testService service;
-    @Autowired
-    private testRepository repository;
 
     //    http://127.0.0.1:8090/test_entity/test
     @GetMapping(value = "/test")
@@ -41,25 +40,30 @@ public class testController {
         return this.service.all();
     }
 
+    // GET /test_entity/{id}
     @GetMapping(value = "/{id}")
     public testEntity findById (@PathVariable Long id) {
         return this.service.findById(id);
     }
 
 
-    //Creating tests
+    // POST /test_entity
     @PostMapping
     public void save(@Valid @RequestBody testCreatePayload test) {
         this.service.create(test);
     }
 
-    //Updating test data
-//    public ResponseEntity<testEntity> update(long id, testEntity testDetails) {
-//        testEntity updateTest = this.repository.findById(id);
-//        updateTest.setName(testDetails.getName());
-//        updateTest.setPower(testDetails.getPower());
-//
-//        this.repository.save(updateTest);
-//    }
+
+    // PATCH /test_entity/{id}
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<testEntity> update(@PathVariable Long id, @RequestBody testUpdatePayload data) {
+        testEntity test = this.service.update(id, data);
+
+        if (test == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
 
 }

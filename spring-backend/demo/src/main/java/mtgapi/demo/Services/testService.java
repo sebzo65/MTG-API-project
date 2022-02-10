@@ -20,8 +20,10 @@ public class testService {
     @Autowired
     private testRepository repository;
 
+    //Find all records in the database
     public List<testEntity> all() {return this.repository.findAll();}
 
+    //Find a record in the database by the Id
     public testEntity findById(Long id) {
         Optional<testEntity> testEntity = this.repository.findById(id);
         if(testEntity.isEmpty()) {
@@ -30,18 +32,30 @@ public class testService {
         return testEntity.get();
     }
 
+    //Creating a record in the database
     public void create(testCreatePayload test) {
         testEntity newTestEntity = new testEntity(test.getName(), test.getPower());
 
         repository.save(newTestEntity);
     }
 
-    public testEntity update (Long id, testUpdatePayload data) {
-        if (this.repository.existsByNameAndId(data.getName(), id)) {
-            throw new Error(String.format("testEntity with name %s already exists",
-                    data.getName()));
+    //Updating a record in the database
+    public testEntity update(Long id, testUpdatePayload data) {
+        Optional<testEntity> fetchedTest = this.repository.findById(id);
+
+        if (fetchedTest.isEmpty()) {
+            return null;
         }
-        var test = this.findById(id);
+
+        testEntity test = fetchedTest.get();
+
+        if (data.getName() != null && !"".equals(data.getName())) {
+            test.setName(data.getName());
+        }
+
+        if (data.getPower() != null && !"".equals(data.getPower())) {
+            test.setPower(data.getPower());
+        }
 
         return this.repository.save(test);
     }
