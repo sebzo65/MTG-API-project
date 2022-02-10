@@ -24,12 +24,9 @@ public class testService {
     public List<testEntity> all() {return this.repository.findAll();}
 
     //Find a record in the database by the Id
-    public testEntity findById(Long id) {
-        Optional<testEntity> testEntity = this.repository.findById(id);
-        if(testEntity.isEmpty()) {
-            throw new Error(String.format("testEntity with id:%d does not exist", id));
-        }
-        return testEntity.get();
+    public Optional<testEntity> findById(Long id) {
+
+        return this.repository.findById(id);
     }
 
     //Creating a record in the database
@@ -58,5 +55,10 @@ public class testService {
         }
 
         return this.repository.save(test);
+    }
+
+    //Deleting a record in the database
+    public void delete (Long id) {
+        this.repository.deleteById(id);
     }
 }

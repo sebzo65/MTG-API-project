@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/test_entity")
@@ -43,12 +45,18 @@ public class testController {
     // GET /test_entity/{id}
     @GetMapping(value = "/{id}")
     public testEntity findById (@PathVariable Long id) {
-        return this.service.findById(id);
+
+        return this.service
+                .findById(id) //Optional<testEntity>
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "testEntity not found"));
     }
+    //Lambda function with implicit return value
+    //orElseThrow is a method in the Optional class
 
 
     // POST /test_entity
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED) //Returns 201 message (which is only for CREATE)
     public void save(@Valid @RequestBody testCreatePayload test) {
         this.service.create(test);
     }
@@ -64,6 +72,19 @@ public class testController {
         }
 
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    // DELETE /test_entity/{id}
+    @DeleteMapping(value = "/{id}")
+    //Return a 204 Success message, because no content returned
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        this.service.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "testEntity not found"));
+        this.service.delete(id);
+    //Adding 404 Error is important because we need to let user know that they've done something
+        //wrong, like pass in id that doesn't exist. Otherwise, default is 500 internal server error,
+        //& user will assume it's not their fault
     }
 
 }
