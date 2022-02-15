@@ -3,10 +3,7 @@ package mtgapi.demo.Entities;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -18,43 +15,63 @@ public class magicCard {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
     @Getter @Setter @NotBlank
     String name;
 
-    @Getter @Setter @NotBlank
-    String manaCost;
-
-    @Getter @Setter @NotBlank
-    String typeLine;
-
-    @Getter @Setter @NotBlank
-    String expansionSymbol;
-
+    @Column(nullable = false)
     @Getter @Setter @NotNull
-    TextBox textBox;
+    Long manaCostId;
 
+    @Column(nullable = false)
+    @Getter @Setter @NotNull
+    Long typeLineId;
+
+    @Column(nullable = false)
+    @Getter @Setter @NotNull
+    Long expansionSymbolId;
+
+    @Column(nullable = false)
+    @Getter @Setter @NotNull
+    String abilities;
+
+    @Column(nullable = false)
+    @Getter @Setter @NotNull
+    String flavourText;
+
+    @Column(nullable = false)
+    @Getter @Setter @NotBlank
+    String setSymbolAndRarity;
+
+    @Column(nullable = false)
     @Getter @Setter @NotBlank
     String artistInfo;
 
+    @Column(nullable = false)
     @Getter @Setter @NotNull
     Integer collectorNum;
 
+    @Column(nullable = false)
     @Getter @Setter @NotNull
     Integer powerTough;
 
     //Use enum for card borders because there are only 5 of them
-    @Getter @Setter @NotBlank
-    String cardBorder;
+    @Column(nullable = false)
+    @Getter @Setter @NotNull
+    Long cardBorderId;
 
-    public magicCard(String name, String manaCost, String typeLine, String expansionSymbol, TextBox textBox, String artistInfo, Integer collectorNum, Integer powerTough) {
+    public magicCard(String name, Long manaCostId, Long typeLineId, Long expansionSymbolId, String abilities, String flavourText, String setSymbolAndRarity, String artistInfo, Integer collectorNum, Integer powerTough, Long cardBorderId) {
         this.name = name;
-        this.manaCost = manaCost;
-        this.typeLine = typeLine;
-        this.expansionSymbol = expansionSymbol;
-        this.textBox = textBox;
+        this.manaCostId = manaCostId;
+        this.typeLineId = typeLineId;
+        this.expansionSymbolId = expansionSymbolId;
+        this.abilities = abilities;
+        this.flavourText = flavourText;
+        this.setSymbolAndRarity = setSymbolAndRarity;
         this.artistInfo = artistInfo;
         this.collectorNum = collectorNum;
         this.powerTough = powerTough;
+        this.cardBorderId = cardBorderId;
     }
 
     public magicCard () {}
