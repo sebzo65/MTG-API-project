@@ -1,6 +1,5 @@
 package mtgapi.demo.Payloads.Requests;
 
-import mtgapi.demo.Entities.TextBox;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,17 +11,23 @@ public class mtgCardCreatePayload {
     @Getter @Setter @NotBlank
     private String name;
 
-    @Getter @Setter @NotBlank
-    private String manaCost;
-
-    @Getter @Setter @NotBlank
-    private String typeLine;
-
-    @Getter @Setter @NotBlank
-    private String expansionSymbol;
+    @Getter @Setter @NotNull
+    private Long manaCostId;
 
     @Getter @Setter @NotNull
-    private TextBox textBox;
+    private Long typeLineId;
+
+    @Getter @Setter @NotNull
+    private Long expansionSymbolId;
+
+    @Getter @Setter @NotBlank
+    private String abilities;
+
+    @Getter @Setter @NotBlank
+    private String flavourText;
+
+    @Getter @Setter @NotBlank
+    private String setSymbolAndRarity;
 
     @Getter @Setter @NotBlank
     private String artistInfo;
@@ -33,8 +38,8 @@ public class mtgCardCreatePayload {
     @Getter @Setter @NotNull
     private Integer powerTough;
 
-    @Getter @Setter @NotBlank
-    private String setSymbolAndRarity;
+    @Getter @Setter @NotNull
+    private Long cardBorderId;
 
     //Create 2 Constructors - One empty and the other with all the fields
 }
