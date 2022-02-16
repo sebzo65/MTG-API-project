@@ -41,7 +41,7 @@ public class magicCard {
 
 //    @Column(nullable = false)
     @Getter @Setter @NotBlank
-    String symbolAndRarity;
+    String symbolRarity;
 
 //    @Column(nullable = false)
     @Getter @Setter @NotBlank
@@ -60,14 +60,14 @@ public class magicCard {
     @Getter @Setter @NotNull
     Long cardBorderId;
 
-    public magicCard(String name, Long manaCostId, Long typeLineId, Long expansionSymbolId, String abilities, String flavourText, String symbolAndRarity, String artistInfo, Integer collectorNum, Integer powerTough, Long cardBorderId) {
+    public magicCard(String name, Long manaCostId, Long typeLineId, Long expansionSymbolId, String abilities, String flavourText, String symbolRarity, String artistInfo, Integer collectorNum, Integer powerTough, Long cardBorderId) {
         this.name = name;
         this.manaCostId = manaCostId;
         this.typeLineId = typeLineId;
         this.expansionSymbolId = expansionSymbolId;
         this.abilities = abilities;
         this.flavourText = flavourText;
-        this.symbolAndRarity = symbolAndRarity;
+        this.symbolRarity = symbolRarity;
         this.artistInfo = artistInfo;
         this.collectorNum = collectorNum;
         this.powerTough = powerTough;
