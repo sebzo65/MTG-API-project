@@ -17,9 +17,10 @@ public interface magicCardRepository extends JpaRepository<magicCard, Long> {
     List<magicCard>findByExpansionSymbolId(long ExpansionSymbolId);
     List<magicCard>findByAbilities(String abilities);
     List<magicCard>findByFlavourText(String flavourText);
-    List<magicCard>findBySymbolAndRarity(String symbolAndRarity);
+    List<magicCard>findBySymbolRarity(String symbolRarity);
     List<magicCard>findByArtistInfo(String artistInfo);
     List<magicCard>findByCollectorNum(Integer collectorNum);
     List<magicCard>findByPowerTough(String powerTough);
     List<magicCard>findByCardBorderId(long CardBorderId);
+
 }

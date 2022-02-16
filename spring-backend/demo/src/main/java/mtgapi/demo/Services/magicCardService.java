@@ -1,6 +1,7 @@
 package mtgapi.demo.Services;
 
 import mtgapi.demo.Entities.magicCard;
+import mtgapi.demo.Payloads.Requests.mtgCardCreatePayload;
 import mtgapi.demo.Repositories.magicCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,23 @@ public class magicCardService {
     public Optional<magicCard> findById(Long id) {
         return this.repository.findById(id);
     }
+
+    //Create a new record in the database
+    public void create(mtgCardCreatePayload card) {
+        magicCard magicCard = new magicCard(
+                card.getName(),
+                card.getManaCostId(),
+                card.getTypeLineId(),
+                card.getExpansionSymbolId(),
+                card.getAbilities(),
+                card.getFlavourText(),
+                card.getSymbolRarity(),
+                card.getArtistInfo(),
+                card.getCollectorNum(),
+                card.getPowerTough(),
+                card.getCardBorderId()
+                );
+    repository.save(magicCard);
+    }
+
 }

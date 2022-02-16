@@ -27,7 +27,7 @@ public class mtgCardCreatePayload {
     private String flavourText;
 
     @Getter @Setter @NotBlank
-    private String symbolAndRarity;
+    private String symbolRarity;
 
     @Getter @Setter @NotBlank
     private String artistInfo;
@@ -51,7 +51,7 @@ public class mtgCardCreatePayload {
             Long expansionSymbolId,
             String abilities,
             String flavourText,
-            String symbolAndRarity,
+            String symbolRarity,
             String artistInfo,
             Integer collectorNum,
             Integer powerTough,
@@ -63,7 +63,7 @@ public class mtgCardCreatePayload {
         this.setExpansionSymbolId(expansionSymbolId);
         this.setAbilities(abilities);
         this.setFlavourText(flavourText);
-        this.setSymbolAndRarity(symbolAndRarity);
+        this.setSymbolRarity(symbolRarity);
         this.setArtistInfo(artistInfo);
         this.setCollectorNum(collectorNum);
         this.setPowerTough(powerTough);
