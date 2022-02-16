@@ -27,7 +27,7 @@ public class mtgCardCreatePayload {
     private String flavourText;
 
     @Getter @Setter @NotBlank
-    private String setSymbolAndRarity;
+    private String symbolAndRarity;
 
     @Getter @Setter @NotBlank
     private String artistInfo;
@@ -42,4 +42,31 @@ public class mtgCardCreatePayload {
     private Long cardBorderId;
 
     //Create 2 Constructors - One empty and the other with all the fields
+    public mtgCardCreatePayload(){}
+
+    public mtgCardCreatePayload(
+            String name,
+            Long manaCostId,
+            Long typeLineId,
+            Long expansionSymbolId,
+            String abilities,
+            String flavourText,
+            String symbolAndRarity,
+            String artistInfo,
+            Integer collectorNum,
+            Integer powerTough,
+            Long cardBorderId
+    ) {
+        this.setName(name);
+        this.setManaCostId(manaCostId);
+        this.setTypeLineId(typeLineId);
+        this.setExpansionSymbolId(expansionSymbolId);
+        this.setAbilities(abilities);
+        this.setFlavourText(flavourText);
+        this.setSymbolAndRarity(symbolAndRarity);
+        this.setArtistInfo(artistInfo);
+        this.setCollectorNum(collectorNum);
+        this.setPowerTough(powerTough);
+        this.setCardBorderId(cardBorderId);
+    }
 }
