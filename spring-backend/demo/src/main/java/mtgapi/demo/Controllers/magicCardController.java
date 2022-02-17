@@ -17,6 +17,12 @@ public class magicCardController {
     @Autowired
     private magicCardService service;
 
+    //    http://127.0.0.1:8090/magic_card/test
+    @GetMapping(value = "/test")
+    public String test() {
+        return "hello, world!";
+    }
+
     //Retrieve all records in database
     @GetMapping
     public List<magicCard> all() {

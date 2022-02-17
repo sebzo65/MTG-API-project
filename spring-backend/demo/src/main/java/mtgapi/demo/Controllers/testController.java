@@ -1,9 +1,7 @@
 package mtgapi.demo.Controllers;
-
 import mtgapi.demo.Entities.testEntity;
 import mtgapi.demo.Payloads.Requests.testCreatePayload;
 import mtgapi.demo.Payloads.Requests.testUpdatePayload;
-import mtgapi.demo.Repositories.testRepository;
 import mtgapi.demo.Services.testService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
