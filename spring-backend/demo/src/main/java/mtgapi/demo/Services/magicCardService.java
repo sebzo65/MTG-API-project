@@ -2,6 +2,7 @@ package mtgapi.demo.Services;
 
 import mtgapi.demo.Entities.magicCard;
 import mtgapi.demo.Payloads.Requests.mtgCardCreatePayload;
+import mtgapi.demo.Payloads.Requests.mtgCardUpdatePayload;
 import mtgapi.demo.Repositories.magicCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,4 +45,8 @@ public class magicCardService {
     repository.save(magicCard);
     }
 
+    //Updating a record in the database
+//    public magicCard update(Long id, mtgCardUpdatePayload data) {
+//
+//    }
 }
