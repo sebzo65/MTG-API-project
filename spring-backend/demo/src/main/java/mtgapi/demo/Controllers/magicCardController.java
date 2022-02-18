@@ -2,9 +2,12 @@ package mtgapi.demo.Controllers;
 
 import mtgapi.demo.Entities.magicCard;
 import mtgapi.demo.Payloads.Requests.mtgCardCreatePayload;
+import mtgapi.demo.Payloads.Requests.mtgCardUpdatePayload;
 import mtgapi.demo.Services.magicCardService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -41,6 +44,17 @@ public class magicCardController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public void save(@Valid @RequestBody mtgCardCreatePayload mtgCard) {
         this.service.create(mtgCard);
+    }
+
+    // PATCH /magic_card/{id}
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<magicCard> update(@PathVariable Long id, @RequestBody mtgCardUpdatePayload data) {
+        magicCard card = this.service.update(id, data);
+
+        if (card == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
 }
