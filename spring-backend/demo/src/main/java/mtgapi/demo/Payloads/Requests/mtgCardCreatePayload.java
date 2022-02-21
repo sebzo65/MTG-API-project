@@ -41,6 +41,9 @@ public class mtgCardCreatePayload {
     @Getter @Setter @NotNull
     private Long cardBorderId;
 
+    @Getter @Setter @NotBlank
+    private String cardImage;
+
     //Create 2 Constructors - One empty and the other with all the fields
     public mtgCardCreatePayload(){}
 
@@ -55,7 +58,8 @@ public class mtgCardCreatePayload {
             String artistInfo,
             Integer collectorNum,
             Integer powerTough,
-            Long cardBorderId
+            Long cardBorderId,
+            String cardImage
     ) {
         this.setName(name);
         this.setManaCostId(manaCostId);
@@ -68,5 +72,6 @@ public class mtgCardCreatePayload {
         this.setCollectorNum(collectorNum);
         this.setPowerTough(powerTough);
         this.setCardBorderId(cardBorderId);
+        this.setCardImage(cardImage);
     }
 }
