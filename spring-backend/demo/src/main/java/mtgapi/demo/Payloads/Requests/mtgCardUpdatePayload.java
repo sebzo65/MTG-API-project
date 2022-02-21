@@ -41,6 +41,9 @@ public class mtgCardUpdatePayload {
     @Getter @Setter @NotNull
     private Long cardBorderId;
 
+    @Getter @Setter @NotBlank
+    private String cardImage;
+
     public mtgCardUpdatePayload() {}
 
     public mtgCardUpdatePayload (
@@ -54,7 +57,8 @@ public class mtgCardUpdatePayload {
             String artistInfo,
             Integer collectorNum,
             Integer powerTough,
-            Long cardBorderId
+            Long cardBorderId,
+            String cardImage
     ) {
         this.setName(name);
         this.setManaCostId(manaCostId);
@@ -67,5 +71,6 @@ public class mtgCardUpdatePayload {
         this.setCollectorNum(collectorNum);
         this.setPowerTough(powerTough);
         this.setCardBorderId(cardBorderId);
+        this.setCardImage(cardImage);
     }
 }

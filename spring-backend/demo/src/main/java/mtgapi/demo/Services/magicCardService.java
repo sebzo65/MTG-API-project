@@ -40,7 +40,8 @@ public class magicCardService {
                 card.getArtistInfo(),
                 card.getCollectorNum(),
                 card.getPowerTough(),
-                card.getCardBorderId()
+                card.getCardBorderId(),
+                card.getCardImage()
                 );
     repository.save(magicCard);
     }
@@ -92,6 +93,10 @@ public class magicCardService {
 
         if (data.getCardBorderId() != null && !"".equals(data.getCardBorderId())) {
             card.setCardBorderId(data.getCardBorderId());
+        }
+
+        if (data.getCardImage() != null && !"".equals(data.getCardImage())) {
+            card.setCardImage(data.getCardImage());
         }
 
         return this.repository.save(card);

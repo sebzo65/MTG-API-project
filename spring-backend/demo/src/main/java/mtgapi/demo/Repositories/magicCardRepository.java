@@ -22,5 +22,6 @@ public interface magicCardRepository extends JpaRepository<magicCard, Long> {
     List<magicCard>findByCollectorNum(Integer collectorNum);
     List<magicCard>findByPowerTough(String powerTough);
     List<magicCard>findByCardBorderId(long CardBorderId);
+    List<magicCard>findByCardImage(long cardImage);
 
 }

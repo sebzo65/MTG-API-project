@@ -60,7 +60,10 @@ public class magicCard {
     @Getter @Setter @NotNull
     Long cardBorderId;
 
-    public magicCard(String name, Long manaCostId, Long typeLineId, Long expansionSymbolId, String abilities, String flavourText, String symbolRarity, String artistInfo, Integer collectorNum, Integer powerTough, Long cardBorderId) {
+    @Getter @Setter @NotBlank
+    String cardImage;
+
+    public magicCard(String name, Long manaCostId, Long typeLineId, Long expansionSymbolId, String abilities, String flavourText, String symbolRarity, String artistInfo, Integer collectorNum, Integer powerTough, Long cardBorderId, String cardImage) {
         this.name = name;
         this.manaCostId = manaCostId;
         this.typeLineId = typeLineId;
@@ -72,6 +75,7 @@ public class magicCard {
         this.collectorNum = collectorNum;
         this.powerTough = powerTough;
         this.cardBorderId = cardBorderId;
+        this.cardImage = cardImage;
     }
 
     public magicCard () {}
