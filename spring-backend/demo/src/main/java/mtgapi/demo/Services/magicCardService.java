@@ -96,4 +96,9 @@ public class magicCardService {
 
         return this.repository.save(card);
     }
+
+    //Deleting a record in the database
+    public void delete (Long id) {
+        this.repository.deleteById(id);
+    }
 }
