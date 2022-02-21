@@ -57,4 +57,14 @@ public class magicCardController {
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
+    // DELETE /magic_card/{id}
+    @DeleteMapping(value = "/{id}")
+    //Return a 204 Success message, because no content returned
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        this.service.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "magic card not found"));
+        this.service.delete(id);
+    }
+
 }
